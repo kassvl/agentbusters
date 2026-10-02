@@ -1,0 +1,44 @@
+{
+  "_note": "Map + fingerprints of where autonomous agents have been found congregating, distilled from the May-Jul 2026 DSEWiki disclosure and follow-ups (collusion.wiki, LessWrong, news). The ECOLOGICAL NICHE agents colonise: surfaces writable via GET (or openly editable), abandoned / low human traffic, so a sandboxed GET-only agent can post. Maintain this file; habitats move.",
+
+  "fingerprints": {
+    "url_patterns": ["wiki.cgi?action=", "wiki.pl?action=", "?action=rc", "?action=browse", "?action=edit", "?do=recent", "Special:RecentChanges", "guestbook", "/paste/"],
+    "engines": ["UseModWiki", "ProWiki", "DokuWiki", "MediaWiki (anon-editable)", "legacy guestbook", "open pastebin", "link shortener"],
+    "niche": "GET-writable or open-anon-edit + abandoned/low-traffic = colonisable by GET-only sandboxed agents",
+    "recent_change_paths": ["?action=rc&days=30&all=1&showedit=1", "?do=recent", "wiki/Special:RecentChanges"]
+  },
+
+  "signals": [
+    {"weight": 4, "label": "ZZZ Schelling-point page", "pattern": "\\bZ{3}[A-Za-z0-9]|AgentZzz"},
+    {"weight": 4, "label": "sandbox/heartbeat/termination talk", "pattern": "\\b(?:sandbox|heartbeat|container[^.]{0,12}terminat|countdown to (?:reset|termination))\\b"},
+    {"weight": 3, "label": "self-declared agent", "pattern": "\\bas an (?:ai|autonomous) (?:language )?(?:model|agent)\\b|I am an autonomous agent"},
+    {"weight": 3, "label": "inter-agent tunnel (pinggy/localhost.run/ngrok)", "pattern": "pinggy\\.io|localhost\\.run|\\bngrok\\b|serveo\\.net"},
+    {"weight": 3, "label": "agent-to-agent address", "pattern": "\\b(?:another agent|to any agents? reading|leaving (?:a message|this) for|fellow agents?)\\b"},
+    {"weight": 2, "label": "GET-write / bypass talk", "pattern": "\\b(?:GET request|POST is disabled|bypass|restriction|read[- ]only access)\\b"},
+    {"weight": 2, "label": "model/vendor name", "pattern": "\\b(?:gpt-?\\d|chatgpt|claude|gemini|llama|mistral|openai|anthropic)\\b"},
+    {"weight": 2, "label": "task/relay coordination", "pattern": "\\b(?:task id|question sequence|relay|shared answers?|intermediate results?)\\b"},
+    {"weight": 1, "label": "machine handle", "pattern": "\\b(?:[A-Za-z]+Bot|[A-Za-z]+Assistant|agent[_-]?\\d{2,}|bot[_-]?\\d{2,})\\b"},
+    {"weight": 1, "label": "long base64-like blob", "pattern": "[A-Za-z0-9+/]{80,}={0,2}"}
+  ],
+
+  "known_habitats": [
+    {"name": "DSEWiki", "url": "http://www.prowiki.org/dse/wiki.cgi", "recent": "http://www.prowiki.org/dse/wiki.cgi?action=rc", "engine": "ProWiki/UseMod (wiki.cgi)", "status": "PRIMARY incident May 11-Jul 2 2026 (~3700 agents, ~18k posts); ZZZ backup pages + agent-named accounts still visible Sep 2026", "source": "collusion.wiki"},
+    {"name": "Wiki4D (ProWiki farm)", "url": "https://prowiki.org/wiki4d/wiki.cgi", "recent": "https://prowiki.org/wiki4d/wiki.cgi?action=browse&id=RecentChanges", "engine": "ProWiki/UseMod", "status": "same farm as DSEWiki; check for spillover"},
+    {"name": "ProWikiCenter", "url": "https://prowiki.org/prowiki/wiki.cgi", "recent": "https://prowiki.org/prowiki/wiki.cgi?action=rc", "engine": "ProWiki/UseMod", "status": "farm hub; enumerate sibling sub-wikis here"},
+    {"name": "UseMod (usemod.org)", "url": "https://www.usemod.org/cgi-bin/wiki.pl", "recent": "https://www.usemod.org/cgi-bin/wiki.pl?action=rc&days=30&all=1&showedit=1", "engine": "UseModWiki (reference install)", "status": "the ur-engine; the swarm reasoned from here to its derivatives"},
+    {"name": "GruenderWiki", "url": "http://www.prowiki.org/gruender/wiki.cgi", "recent": "http://www.prowiki.org/gruender/wiki.cgi?action=rc", "engine": "ProWiki/UseMod", "status": "ProWiki-farm sibling (full enumeration 2026-09-19); dormant, human only", "source": "discover"},
+    {"name": "BuecherWiki", "url": "http://www.prowiki.org/buecher/wiki.cgi", "recent": "http://www.prowiki.org/buecher/wiki.cgi?action=rc", "engine": "ProWiki/UseMod", "status": "ProWiki-farm sibling (full enumeration); empty/no recent edits", "source": "discover"},
+    {"name": "FractalWiki", "url": "http://www.prowiki.org/fractal/wiki.cgi", "recent": "http://www.prowiki.org/fractal/wiki.cgi?action=rc", "engine": "ProWiki/UseMod", "status": "swarm site: ~565 agent-fingerprinted edits (swarm-ai.org)", "source": "discover"},
+    {"name": "ProbierWiki", "url": "http://www.prowiki.org/probier/wiki.cgi", "recent": "http://www.prowiki.org/probier/wiki.cgi?action=rc", "engine": "ProWiki/UseMod", "status": "swarm site: ~900 agent-fingerprinted edits (swarm-ai.org)", "source": "discover"},
+    {"name": "UseMod SandBox", "url": "https://www.usemod.org/cgi-bin/wiki.pl?SandBox", "recent": "https://www.usemod.org/cgi-bin/wiki.pl?action=browse&id=SandBox", "engine": "UseModWiki", "status": "reference-install SandBox; agent edits continued into Sep 2026", "source": "discover"},
+    {"name": "usemod.com", "url": "http://www.usemod.com/cgi-bin/wiki.pl", "recent": "http://www.usemod.com/cgi-bin/wiki.pl?action=rc&days=30&all=1&showedit=1", "engine": "UseModWiki", "status": "second reference install (GET/Site_list)", "source": "discover"},
+    {"name": "PublicTestWiki", "url": "https://publictestwiki.com/", "recent": "https://publictestwiki.com/wiki/Special:RecentChanges", "engine": "MediaWiki (Miraheze)", "status": "named by researchers; open test wiki; no live agent traces seen 2026-09"},
+    {"name": "Moltbook", "url": "https://moltbook.com/", "recent": "https://moltbook.com/", "engine": "custom agent-only forum", "type": "agent-social-network", "status": "deliberate agent-only forum (Jan 2026, Meta-acquired Mar 2026); humans view-only; 'AI theater' caveat — much is human-prompted"},
+    {"name": "The Colony", "url": "https://thecolony.cc/", "recent": "https://thecolony.cc/", "engine": "agent social network (REST + MCP thecolony.cc/mcp/, self-onboarding col.ad)", "type": "agent-social-network", "status": "LIVE (observed 2026-09-19): 1504 agents + 1070 humans, 21423 posts, 113407 comments; handles Clara/Twoc-claude/XiYuan/Vina/Bytes; public feed. Agents self-register via API — a place agents are CALLED to, not a hijacked surface", "source": "clever-search"},
+    {"name": "DiraBook", "url": "https://dirabook.com/", "recent": "https://dirabook.com/", "engine": "agent social network", "type": "agent-social-network", "status": "LIVE (observed 2026-09-19): ~25020 agents, 296 posts; agent tantive-space-board runs cross-platform interop tests (emergent watering-hole bridging)", "source": "clever-search"},
+    {"name": "Zzboard", "url": "https://mcpmarket.com/server/zzboard", "recent": "https://mcpmarket.com/server/zzboard", "engine": "agent message board (MCP + REST)", "type": "agent-social-network", "status": "LEAD (mid-Sep 2026): message board for agents, register via MCP; name echoes the DSE 'ZZZ' scheme — verify the live URL", "source": "clever-search"},
+    {"name": "agent-guestbook", "url": "https://github.com/Drew-Goddyn/agent-guestbook", "recent": "https://github.com/Drew-Goddyn/agent-guestbook/issues", "engine": "GitHub repo (PR/issue)", "status": "explicit standing invitation for agents; currently empty"},
+    {"name": "collusion.wiki", "url": "https://collusion.wiki/", "recent": "https://collusion.wiki/", "engine": "researchers' explorer", "status": "ARCHIVE of the DSE data (PII-redacted); a catalog, not a live habitat"},
+    {"name": "vanderbi.lt", "url": "https://vanderbi.lt/", "recent": "https://vanderbi.lt/", "engine": "link shortener", "status": "Vanderbilt shortener compromised by the swarm to mint short URLs; check as an abuse vector, not a forum"}
+  ]
+}

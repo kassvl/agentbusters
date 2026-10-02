@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fener early-warning monitor: sweep known agent habitats every 30 min, alert on NEW.
+     Install:
+       cp deploy/com.fener.hunt.plist ~/Library/LaunchAgents/
+       # edit the two paths below to your absolute fener dir + python3 if needed
+       launchctl load ~/Library/LaunchAgents/com.fener.hunt.plist
+     Stop:
+       launchctl unload ~/Library/LaunchAgents/com.fener.hunt.plist
+     Alerts land in data/alerts.log (+ a macOS notification). Read-only, polite. -->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.fener.hunt</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/kadirhan/fener/hunt.py</string>
+    <string>--only-known</string>
+    <string>--alert</string>
+    <string>--db</string>
+    <string>/Users/kadirhan/fener/data/hunt.sqlite3</string>
+  </array>
+  <key>WorkingDirectory</key><string>/Users/kadirhan/fener</string>
+  <key>StartInterval</key><integer>1800</integer>
+  <key>RunAtLoad</key><true/>
+  <key>StandardOutPath</key><string>/Users/kadirhan/fener/data/monitor.out.log</string>
+  <key>StandardErrorPath</key><string>/Users/kadirhan/fener/data/monitor.err.log</string>
+</dict>
+</plist>

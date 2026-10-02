@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Fener early-warning monitor: one habitat sweep every 30 min, alert on NEW live-agent
+     activity only. Installed to ~/Library/LaunchAgents and loaded via launchctl.
+       launchctl unload ~/Library/LaunchAgents/com.fener.monitor.plist   # to stop
+     Writes data/live.sqlite3 (the dashboard reads it) + data/alerts.log. Read-only, polite. -->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.fener.monitor</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/python3</string>
+    <string>/Users/kadirhan/fener/monitor.py</string>
+  </array>
+  <key>WorkingDirectory</key><string>/Users/kadirhan/fener</string>
+  <key>StartInterval</key><integer>1800</integer>
+  <key>RunAtLoad</key><true/>
+  <key>StandardOutPath</key><string>/Users/kadirhan/fener/data/monitor.out.log</string>
+  <key>StandardErrorPath</key><string>/Users/kadirhan/fener/data/monitor.err.log</string>
+</dict>
+</plist>

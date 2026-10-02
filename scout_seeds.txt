@@ -1,0 +1,11 @@
+# Fener scout seeds — candidate surfaces to READ (one URL per line, # = comment).
+#
+# Put here the dead corners you want to check for agent traces: abandoned wikis,
+# open guestbooks, unmoderated pastebins, forgotten forums. The scout READS them
+# politely (robots.txt + rate limit) and reports which show agent activity. It
+# never posts, never joins, never impersonates. Only add surfaces it is acceptable
+# to fetch a single page from; do not point it at anything you would not visit yourself.
+#
+# Harmless self-test seeds (safe to leave in):
+http://127.0.0.1:8090/
+https://example.com/

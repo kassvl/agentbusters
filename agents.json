@@ -1,0 +1,39 @@
+{
+  "_note": "Seed list of known AI/agent user-agents and how to VERIFY them (never trust the UA string alone). rdns_suffixes: reverse-DNS must end with one of these AND forward-confirm to the same IP. ip_ranges_url: provider-published CIDR list to match against (fetch and cache separately; not bundled). kind: training_crawler = bulk scraping for model training; user_agent = fetch on behalf of a live user/agent task (closer to autonomous agents); search = answer-engine indexing. Maintain this file; it drifts. Cutoff ~2026-01.",
+  "agents": [
+    {"name": "OpenAI GPTBot", "kind": "training_crawler", "ua": ["GPTBot"], "rdns_suffixes": [], "ip_ranges_url": "https://openai.com/gptbot.json"},
+    {"name": "OpenAI ChatGPT-User", "kind": "user_agent", "ua": ["ChatGPT-User"], "rdns_suffixes": [], "ip_ranges_url": "https://openai.com/chatgpt-user.json"},
+    {"name": "OpenAI SearchBot", "kind": "search", "ua": ["OAI-SearchBot"], "rdns_suffixes": [], "ip_ranges_url": "https://openai.com/searchbot.json"},
+    {"name": "Anthropic ClaudeBot", "kind": "training_crawler", "ua": ["ClaudeBot", "anthropic-ai"], "rdns_suffixes": [], "ip_ranges_url": "https://docs.anthropic.com/claude/docs/bot"},
+    {"name": "Anthropic Claude-User", "kind": "user_agent", "ua": ["Claude-User"], "rdns_suffixes": [], "ip_ranges_url": ""},
+    {"name": "Anthropic Claude-SearchBot", "kind": "search", "ua": ["Claude-SearchBot"], "rdns_suffixes": [], "ip_ranges_url": ""},
+    {"name": "Perplexity", "kind": "search", "ua": ["PerplexityBot", "Perplexity-User"], "rdns_suffixes": [], "ip_ranges_url": "https://www.perplexity.ai/perplexitybot.json"},
+    {"name": "Google", "kind": "search", "ua": ["Googlebot", "Google-Extended", "GoogleOther"], "rdns_suffixes": [".googlebot.com", ".google.com"], "ip_ranges_url": "https://developers.google.com/search/apis/ipranges/googlebot.json"},
+    {"name": "Bing", "kind": "search", "ua": ["bingbot", "BingPreview"], "rdns_suffixes": [".search.msn.com"], "ip_ranges_url": "https://www.bing.com/toolbox/bingbot.json"},
+    {"name": "Amazon", "kind": "training_crawler", "ua": ["Amazonbot"], "rdns_suffixes": [".crawl.amazon.com"], "ip_ranges_url": ""},
+    {"name": "Apple", "kind": "training_crawler", "ua": ["Applebot", "Applebot-Extended"], "rdns_suffixes": [".applebot.apple.com"], "ip_ranges_url": ""},
+    {"name": "Meta", "kind": "training_crawler", "ua": ["meta-externalagent", "facebookexternalhit", "FacebookBot"], "rdns_suffixes": [], "ip_ranges_url": ""},
+    {"name": "ByteDance", "kind": "training_crawler", "ua": ["Bytespider"], "rdns_suffixes": [], "ip_ranges_url": ""},
+    {"name": "Mistral", "kind": "user_agent", "ua": ["MistralAI-User"], "rdns_suffixes": [], "ip_ranges_url": ""},
+    {"name": "Cohere", "kind": "training_crawler", "ua": ["cohere-ai", "cohere-training-data-crawler"], "rdns_suffixes": [], "ip_ranges_url": ""},
+    {"name": "DuckDuckGo Assist", "kind": "user_agent", "ua": ["DuckAssistBot"], "rdns_suffixes": [], "ip_ranges_url": ""},
+    {"name": "You.com", "kind": "search", "ua": ["YouBot"], "rdns_suffixes": [], "ip_ranges_url": ""},
+    {"name": "Diffbot", "kind": "training_crawler", "ua": ["Diffbot"], "rdns_suffixes": [], "ip_ranges_url": ""},
+    {"name": "Timpi", "kind": "training_crawler", "ua": ["Timpibot"], "rdns_suffixes": [], "ip_ranges_url": ""},
+    {"name": "Common Crawl", "kind": "training_crawler", "ua": ["CCBot"], "rdns_suffixes": [], "ip_ranges_url": ""}
+  ],
+  "cloud_rdns_suffixes": [
+    ".amazonaws.com",
+    ".compute.amazonaws.com",
+    ".googleusercontent.com",
+    ".bc.googleusercontent.com",
+    ".cloudapp.azure.com",
+    ".cloudapp.net",
+    ".oraclecloud.com",
+    ".hetzner.com",
+    ".your-server.de",
+    ".linodeusercontent.com",
+    ".vultrusercontent.com",
+    ".digitalocean.com"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "functions": {
+    "api/beacon.py": { "includeFiles": "api/data/**" }
+  },
+  "rewrites": [
+    { "source": "/", "destination": "/api/beacon?action=page" },
+    { "source": "/robots.txt", "destination": "/api/beacon?action=robots" },
+    { "source": "/dashboard", "destination": "/api/beacon?action=dashboard" },
+    { "source": "/panel", "destination": "/api/beacon?action=panel" },
+    { "source": "/mint", "destination": "/api/beacon?action=mint" },
+    { "source": "/siem", "destination": "/api/beacon?action=siem" },
+    { "source": "/timing", "destination": "/api/beacon?action=timing" },
+    { "source": "/c/:tag", "destination": "/api/beacon?action=callback&tag=:tag" }
+  ]
+}

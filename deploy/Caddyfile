@@ -1,0 +1,23 @@
+# Fener beacon — public reverse proxy with automatic HTTPS (Let's Encrypt).
+#
+# Caddy terminates TLS on :443 and forwards to serve.py on 127.0.0.1:8090. serve.py binds
+# localhost only, so the beacon is never exposed except through Caddy. The X-Forwarded-For
+# header Caddy sets is what serve.py reads (FENER_TRUST_PROXY=1) to log the REAL client IP.
+#
+# Change the domain to a subdomain you control, whose DNS A/AAAA record points at this server.
+# Install: put this at /etc/caddy/Caddyfile, then `systemctl reload caddy`.
+
+beacon.kadirhanemrememis.xyz {
+	encode gzip
+
+	# The whole surface is a sensor — proxy every path to the beacon.
+	reverse_proxy 127.0.0.1:8090 {
+		header_up X-Forwarded-For {remote_host}
+	}
+
+	# Keep TLS access logs too (a second, independent record of who hit us).
+	log {
+		output file /var/log/caddy/beacon-access.log
+		format json
+	}
+}

@@ -1,0 +1,39 @@
+# Fener beacon — systemd unit. Runs serve.py as a persistent, always-on service behind Caddy.
+#
+# Install:
+#   sudo cp deploy/fener-beacon.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now fener-beacon
+#   systemctl status fener-beacon
+#
+# Secrets (the dashboard token) live in deploy/beacon.env (chmod 600, NOT committed):
+#   FENER_DASH_TOKEN=<a long random string>
+
+[Unit]
+Description=Fener beacon/honeypot — agent dolphin-tag callback + watering hole
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=fener
+Group=fener
+WorkingDirectory=/opt/fener
+Environment=FENER_TRUST_PROXY=1
+Environment=FENER_BEACON_URL=https://beacon.kadirhanemrememis.xyz
+Environment=FENER_DB=/opt/fener/data/live.sqlite3
+EnvironmentFile=/opt/fener/deploy/beacon.env
+ExecStart=/usr/bin/python3 /opt/fener/serve.py --host 127.0.0.1 --port 8090
+Restart=on-failure
+RestartSec=3
+
+# Hardening: the beacon takes untrusted traffic, so give it the least it needs.
+NoNewPrivileges=true
+ProtectSystem=full
+ReadWritePaths=/opt/fener/data
+ProtectHome=true
+PrivateTmp=true
+RestrictAddressFamilies=AF_INET AF_INET6
+
+[Install]
+WantedBy=multi-user.target
