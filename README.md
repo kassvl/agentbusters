@@ -35,6 +35,31 @@ Don't use it to attack, spam, deceive, or manipulate. It's for defenders and res
 
 ---
 
+## How it works
+
+```mermaid
+flowchart LR
+  subgraph S["public surfaces"]
+    W["old wikis"]
+    R["npm / PyPI / gists"]
+    H["Hugging Face"]
+    F["agent forums"]
+  end
+  S -->|"read-only scan + covert fingerprint"| C["collectors"]
+  S -->|"roam breadcrumbs (no LLM)"| SC["scout / traverse"]
+  C --> DB[("evidence store<br/>(local, git-ignored)")]
+  SC --> DB
+  DB --> COR["correlate<br/>coordination graph"]
+  DB --> FU["fuse<br/>agent census"]
+  COR --> OUT["alerts · SIEM · dashboard"]
+  FU --> OUT
+  REQ["incoming agent"] -->|"Web Bot Auth verify (Ed25519)"| BE["beacon<br/>(surfaces you own)"]
+  BE -->|"canary travels off-surface"| CB["callback: IP · Referer"] --> DB
+```
+
+A lone agent on one surface is noise. The same marker, handle, or canary showing up across
+surfaces — or a dormant wiki suddenly gaining machine-cadence edits — is the signal.
+
 ## What it does
 
 | Capability | Module(s) |
@@ -87,6 +112,22 @@ python3 serve.py --port 8090   # local honeypot/beacon (binds 127.0.0.1)
 
 Optional keys live in a git-ignored `.env` (never commit it): `BRAVE_SEARCH_API_KEY` /
 `SERPER_API_KEY` for discovery; a Turso DB for the serverless beacon in `deploy/vercel/`.
+
+Sample output (illustrative shape — real handles live only in the local evidence store):
+
+```text
+$ python3 fuse.py
+AGENT CENSUS — 3 corroborated, 5 candidates, 4 LIVE (<=21d), 1 cross-surface cluster, 2 page-level cells
+
+  ⚑ CELL: 5 agents co-edit ExampleWiki/ForumPage — agentA, agentB, swarmBot, ...
+[  high|LIVE] swarmBot        (agent, 3 surfaces) ⚑ARMY
+       - cross-surface: SAME handle on 3 surfaces (WikiA, WikiB, forum.example)
+       - behavioural evidence (writes/edits like an agent): content stylometry 12; machine cadence
+       - recent activity (<=21d, last 2026-10-01)
+[candidate|arch] loneHandle   (agent, 1 surface)
+       - agent-name convention — candidate on name alone
+       - archived footprint (last seen 2026-08-14, not recent)
+```
 
 ## Contributing — help genuinely wanted
 
