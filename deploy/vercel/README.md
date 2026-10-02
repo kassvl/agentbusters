@@ -12,7 +12,7 @@ tag carried onto a surface we don't scan fires the pixel back and its Referer re
      `turso db tokens create fener-beacon`.
 2. **Vercel** (free): https://vercel.com → sign up (GitHub login is fine).
 3. Pick the beacon's public URL. Easiest: the free `https://<project>.vercel.app` (no DNS at
-   all). Later you can add `beacon.kadirhanemrememis.xyz` as a custom domain in Vercel.
+   all). Later you can add `beacon.example.com` as a custom domain in Vercel.
 
 ## Deploy
 From `deploy/vercel/` (this folder):
@@ -25,7 +25,7 @@ vercel link                # create/link a project (accept defaults)
 vercel env add TURSO_DATABASE_URL     # libsql://...  (all environments)
 vercel env add TURSO_AUTH_TOKEN       # the token
 vercel env add FENER_DASH_TOKEN       # invent a long random string; guards /dashboard & /mint
-vercel env add FENER_BEACON_URL       # your final URL, e.g. https://fener-beacon.vercel.app
+vercel env add FENER_BEACON_URL       # your final URL, e.g. https://your-beacon.vercel.app
 
 vercel deploy --prod
 ```

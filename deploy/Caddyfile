@@ -7,7 +7,7 @@
 # Change the domain to a subdomain you control, whose DNS A/AAAA record points at this server.
 # Install: put this at /etc/caddy/Caddyfile, then `systemctl reload caddy`.
 
-beacon.kadirhanemrememis.xyz {
+beacon.example.com {
 	encode gzip
 
 	# The whole surface is a sensor — proxy every path to the beacon.

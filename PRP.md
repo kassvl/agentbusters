@@ -96,7 +96,7 @@ Classifications: `known_agent_verified`, `claimed_agent_unverified` (spoof),
       cached live; flags spoofs). Some provider URLs 404 — maintain `agents.json`.
 - [x] Scout: read-only recon that finds where agents leave traces (the "puppet observer").
 - [ ] v1: wire a real model into `redteam.py` (Claude API) for true susceptibility numbers.
-- [ ] v2: deploy. Chosen host TBD. `kadirhanemrememis.xyz` is on Vercel (serverless) with a
+- [ ] v2: deploy. Chosen host TBD. `example.com` is on Vercel (serverless) with a
       site already at the apex → use a subdomain and either (A) rewrite to Vercel functions +
       Turso, or (B) a small VPS + Caddy + systemd. Fix XFF + dash-token before public.
 - [ ] v2: **release the tag** — the part that actually catches wild agents: plant markers /

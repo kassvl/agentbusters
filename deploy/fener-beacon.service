@@ -20,7 +20,7 @@ User=fener
 Group=fener
 WorkingDirectory=/opt/fener
 Environment=FENER_TRUST_PROXY=1
-Environment=FENER_BEACON_URL=https://beacon.kadirhanemrememis.xyz
+Environment=FENER_BEACON_URL=https://beacon.example.com
 Environment=FENER_DB=/opt/fener/data/live.sqlite3
 EnvironmentFile=/opt/fener/deploy/beacon.env
 ExecStart=/usr/bin/python3 /opt/fener/serve.py --host 127.0.0.1 --port 8090

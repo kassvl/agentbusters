@@ -6,8 +6,8 @@ honeypot can attract agents. `serve.py` runs **unchanged** — it was built for 
 
 ## What only you can do (provisioning)
 1. **A cheap VPS** — Hetzner CX22 (~€4/mo) or DigitalOcean/Vultr ($5/mo). Ubuntu 24.04.
-2. **A subdomain you control** — e.g. `beacon.kadirhanemrememis.xyz`. Add a DNS **A record**
-   → the VPS IPv4 (and AAAA → IPv6 if it has one). Wait for it to resolve (`dig +short beacon.kadirhanemrememis.xyz`).
+2. **A subdomain you control** — e.g. `beacon.example.com`. Add a DNS **A record**
+   → the VPS IPv4 (and AAAA → IPv6 if it has one). Wait for it to resolve (`dig +short beacon.example.com`).
 3. If you use a different subdomain, change it in `deploy/Caddyfile` and `deploy/fener-beacon.service`.
 
 ## One-time server setup (run on the VPS as root, or with sudo)
@@ -41,10 +41,10 @@ systemctl reload caddy
 
 ## Verify it's live
 ```sh
-curl -s https://beacon.kadirhanemrememis.xyz/ | grep -o 'FENERZZZ[0-9A-F]*'   # tag embedded
-curl -s https://beacon.kadirhanemrememis.xyz/robots.txt                       # Allow: /
+curl -s https://beacon.example.com/ | grep -o 'FENERZZZ[0-9A-F]*'   # tag embedded
+curl -s https://beacon.example.com/robots.txt                       # Allow: /
 # dashboard (token-protected):
-curl -s "https://beacon.kadirhanemrememis.xyz/dashboard?key=<TOKEN>" | head
+curl -s "https://beacon.example.com/dashboard?key=<TOKEN>" | head
 ```
 
 ## Operate (from your Mac, pointing at the server DB, or on the server)

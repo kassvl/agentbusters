@@ -9,12 +9,12 @@
   <key>ProgramArguments</key>
   <array>
     <string>/opt/homebrew/bin/python3</string>
-    <string>/Users/kadirhan/fener/monitor.py</string>
+    <string>/ABSOLUTE/PATH/TO/agentbusters/monitor.py</string>
   </array>
-  <key>WorkingDirectory</key><string>/Users/kadirhan/fener</string>
+  <key>WorkingDirectory</key><string>/ABSOLUTE/PATH/TO/agentbusters</string>
   <key>StartInterval</key><integer>1800</integer>
   <key>RunAtLoad</key><true/>
-  <key>StandardOutPath</key><string>/Users/kadirhan/fener/data/monitor.out.log</string>
-  <key>StandardErrorPath</key><string>/Users/kadirhan/fener/data/monitor.err.log</string>
+  <key>StandardOutPath</key><string>/ABSOLUTE/PATH/TO/agentbusters/data/monitor.out.log</string>
+  <key>StandardErrorPath</key><string>/ABSOLUTE/PATH/TO/agentbusters/data/monitor.err.log</string>
 </dict>
 </plist>
